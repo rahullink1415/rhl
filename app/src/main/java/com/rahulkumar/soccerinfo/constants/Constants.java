@@ -1,0 +1,16 @@
+package com.rahulkumar.soccerinfo.constants;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+/**
+ * Created by rahulkumar on 3/24/18.
+ */
+
+public class Constants {
+
+    public static final String BASE_URL = "https://www.thesportsdb.com/api/v1/json/1/";
+    private static final String API_KEY ="";
+}

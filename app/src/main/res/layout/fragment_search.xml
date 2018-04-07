@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rahulkumar.soccerinfo.fragment.SearchFragment">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/searchCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dimen10dp"
+        app:cardElevation="@dimen/dimen10dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/searchTxt"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_toStartOf="@id/searchTxt"
+                android:hint="@string/search_here"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/searchButtonImg"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.538" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/searchButtonImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toEndOf="@id/searchTxt"
+                android:src="@drawable/ic_search_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/searchTxt"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchCard"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/teamNameId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/team_name"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/playerTeamId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_by_team"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/playerNameId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_by_name"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchRecyclerId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/radioGroup"
+        android:layout_marginTop="@dimen/dimen5dp" />
+</RelativeLayout>
+
+

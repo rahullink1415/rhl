@@ -1,0 +1,83 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_notification"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen10dp"
+    android:elevation="@dimen/dimen10dp"
+    android:padding="@dimen/dimen10dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/dimen10dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen5dp">
+
+        <TextView
+            android:id="@+id/eventId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen8dp"
+            android:layout_marginStart="@dimen/dimen8dp"
+            android:gravity="center_horizontal"
+            android:text="@string/event"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Liverpool vs Bournemouth" />
+
+        <TextView
+            android:id="@+id/game"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen8dp"
+            android:layout_marginRight="@dimen/dimen15dp"
+            android:layout_marginStart="@dimen/dimen8dp"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:lines="1"
+            android:text="@string/game"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/eventId"
+            app:layout_constraintTop_toBottomOf="@+id/eventId"
+            tools:text="soccer " />
+
+        <TextView
+            android:id="@+id/dateId"
+            android:layout_width="0dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="8dp"
+            android:paddingRight="@dimen/dimen5dp"
+            android:text="@string/date"
+            android:textColor="@color/black"
+            android:textDirection="rtl"
+            app:layout_constraintEnd_toStartOf="@+id/timeId"
+            app:layout_constraintStart_toStartOf="@+id/game"
+            app:layout_constraintTop_toBottomOf="@+id/game"
+            tools:text="2018-04-28" />
+
+        <TextView
+            android:id="@+id/timeId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen15dp"
+            android:paddingStart="@dimen/dimen5dp"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/game"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dateId"
+            app:layout_constraintTop_toBottomOf="@+id/game"
+            tools:text="11:30:00+00:00" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
