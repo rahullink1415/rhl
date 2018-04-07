@@ -1,5 +1,6 @@
 package com.rahulkumar.soccerinfo.activity;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -14,13 +15,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.model.Player;
 import com.rahulkumar.soccerinfo.model.Teams;
 import com.rahulkumar.soccerinfo.utilty.Utility;
+
+import net.steamcrafted.loadtoast.LoadToast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -30,6 +37,7 @@ public class SearchDetailActivity extends AppCompatActivity {
     private TextView mName, mDescription;
     private ImageView mPlayerImg;
     private CollapsingToolbarLayout collapsingToolbar;
+    private LoadToast loadToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,7 @@ public class SearchDetailActivity extends AppCompatActivity {
             mName.setText(player.getStrPlayer());
             mDescription.setText(player.getStrDescriptionEN());
             collapsingToolbar.setTitle(player.getStrPlayer());
+            initToast();
             Glide.with(this).load(player.getStrCutout()).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
@@ -68,10 +77,24 @@ public class SearchDetailActivity extends AppCompatActivity {
                     circleImageView.setImageDrawable(getDrawable(R.drawable.football_jersey));
                 }
             });
-            Glide.with(this).load(player.getStrThumb()).into(new SimpleTarget<Drawable>() {
+            Glide.with(this).load(player.getStrThumb()).listener(new RequestListener<Drawable>() {
+
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    loadToast.error();
+                    return false;
+                }
+
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                    loadToast.success();
+                    return false;
+                }
+            }).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
                     mPlayerImg.setImageDrawable(resource);
+                    loadToast.hide();
                 }
 
                 @Override
@@ -83,6 +106,7 @@ public class SearchDetailActivity extends AppCompatActivity {
 
         }
         if (teams != null) {
+            initToast();
             Utility.log(TAG, "teams " + teams.getStrDescriptionEN());
             mName.setText(teams.getStrTeam());
             mDescription.setText(teams.getStrDescriptionEN());
@@ -100,10 +124,23 @@ public class SearchDetailActivity extends AppCompatActivity {
                     circleImageView.setImageDrawable(getDrawable(R.drawable.ic_football_player));
                 }
             });
-            Glide.with(this).load(teams.getStrStadiumThumb()).into(new SimpleTarget<Drawable>() {
+            Glide.with(this).load(teams.getStrStadiumThumb()).listener(new RequestListener<Drawable>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    loadToast.error();
+                    return false;
+                }
+
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                    loadToast.success();
+                    return false;
+                }
+            }).into(new SimpleTarget<Drawable>() {
                 @Override
                 public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
                     mPlayerImg.setImageDrawable(resource);
+                    loadToast.hide();
                 }
 
                 @Override
@@ -114,7 +151,11 @@ public class SearchDetailActivity extends AppCompatActivity {
             });
 
         }
-
-
+    }
+    private void initToast() {
+        loadToast = new LoadToast(this);
+        loadToast.setProgressColor(Color.BLUE);
+        loadToast.setTranslationY(200);
+        loadToast.show();
     }
 }
