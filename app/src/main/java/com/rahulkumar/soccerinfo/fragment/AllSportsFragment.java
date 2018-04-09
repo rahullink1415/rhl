@@ -1,13 +1,11 @@
 package com.rahulkumar.soccerinfo.fragment;
 
+
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,6 @@ import android.view.ViewGroup;
 import com.android.volley.Request;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.RecyclerListAdapter;
-import com.rahulkumar.soccerinfo.adapter.ViewPagerAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
 import com.rahulkumar.soccerinfo.model.Sports;
 import com.rahulkumar.soccerinfo.singleton.QueueSingleton;
@@ -24,33 +21,30 @@ import com.rahulkumar.soccerinfo.utilty.Utility;
 
 import net.steamcrafted.loadtoast.LoadToast;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class AllSportsFragment extends Fragment {
+    private static final String TAG = "AllSportsFragment";
 
-public class ListsFragment extends Fragment {
-    private static final String TAG = "ListsFragment";
     private RecyclerView recyclerView;
     private RecyclerListAdapter listAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private LoadToast loadToast;
-    private ViewPagerAdapter pagerAdapter;
-    private ViewPager mViewPager;
-    private TabLayout tabLayout;
 
-    public ListsFragment() {
+    public AllSportsFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_lists, container, false);
-       // recyclerView = view.findViewById(R.id.listRecyclerId);
-        tabLayout =view.findViewById(R.id.tabLayout);
-        mViewPager =view.findViewById(R.id.viewPager);
-        initViewPager();
-        //initToast();
-        //layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
-        //recyclerView.setLayoutManager(layoutManager);
-       // getSportsListData();
+        View view = inflater.inflate(R.layout.fragment_all_sports, container, false);
+        recyclerView = view.findViewById(R.id.listRecyclerId);
+
+        initToast();
+        layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        getSportsListData();
 
         return view;
     }
@@ -75,13 +69,4 @@ public class ListsFragment extends Fragment {
         loadToast.setTranslationY(200);
         loadToast.show();
     }
-    private void initViewPager() {
-        pagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
-        pagerAdapter.addFragment(new AllSportsFragment(), "All Sports");
-        pagerAdapter.addFragment(new NewsFragment(), "Sports News");
-        mViewPager.setAdapter(pagerAdapter);
-        tabLayout.setupWithViewPager(mViewPager);
-    }
-
-
 }

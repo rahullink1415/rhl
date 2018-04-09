@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -57,6 +58,16 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.MyViewHold
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_notifiction_layout, parent, false);
+      itemView.setVisibility(View.VISIBLE);
+        itemView.setAlpha(0.0f);
+        itemView.setTranslationX(0.0f);
+        itemView.animate()
+                .setDuration(3000)
+                .translationY(itemView.getHeight())
+                .alpha(1.0f)
+                .setListener(null)
+                .start();
+
         return new MyViewHolder(itemView);
     }
 
@@ -97,5 +108,6 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.MyViewHold
                 }).show();
 
     }
+
 }
 

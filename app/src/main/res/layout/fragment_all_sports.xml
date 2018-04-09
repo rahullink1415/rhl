@@ -2,13 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    tools:context="com.rahulkumar.soccerinfo.fragment.SchedulesFragment">
+    tools:context="com.rahulkumar.soccerinfo.fragment.AllSportsFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/eventsRecyclerId"
+        android:id="@+id/listRecyclerId"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dimen5dp" />
-
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
 </FrameLayout>
