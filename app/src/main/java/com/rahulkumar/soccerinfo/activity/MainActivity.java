@@ -16,30 +16,30 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-                Fragment fragment;
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        fragment =new ListsFragment();
-                        loadFragment(fragment);
-                        return true;
-                    case R.id.navigation_dashboard:
-                        fragment =new SearchFragment();
-                        loadFragment(fragment);
+        Fragment fragment;
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                fragment = new ListsFragment();
+                loadFragment(fragment);
+                return true;
+            case R.id.navigation_dashboard:
+                fragment = new SearchFragment();
+                loadFragment(fragment);
 
-                        return true;
-                    case R.id.navigation_notifications:
-                        fragment =new SchedulesFragment();
-                        loadFragment(fragment);
+                return true;
+            case R.id.navigation_notifications:
+                fragment = new SchedulesFragment();
+                loadFragment(fragment);
 
-                        return true;
-                    case R.id.navigation_image:
-                        fragment =new ImagesFragment();
-                        loadFragment(fragment);
+                return true;
+            case R.id.navigation_image:
+                fragment = new ImagesFragment();
+                loadFragment(fragment);
 
-                        return true;
-                }
-                return false;
-            };
+                return true;
+        }
+        return false;
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.flContainer, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
     }
 
 }
