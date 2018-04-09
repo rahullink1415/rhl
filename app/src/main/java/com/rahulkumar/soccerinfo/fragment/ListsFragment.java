@@ -27,10 +27,6 @@ import net.steamcrafted.loadtoast.LoadToast;
 
 public class ListsFragment extends Fragment {
     private static final String TAG = "ListsFragment";
-    private RecyclerView recyclerView;
-    private RecyclerListAdapter listAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private LoadToast loadToast;
     private ViewPagerAdapter pagerAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
@@ -43,38 +39,15 @@ public class ListsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lists, container, false);
-       // recyclerView = view.findViewById(R.id.listRecyclerId);
-        tabLayout =view.findViewById(R.id.tabLayout);
-        mViewPager =view.findViewById(R.id.viewPager);
+        tabLayout = view.findViewById(R.id.tabLayout);
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FFFFFF"));
+        mViewPager = view.findViewById(R.id.viewPager);
         initViewPager();
-        //initToast();
-        //layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
-        //recyclerView.setLayoutManager(layoutManager);
-       // getSportsListData();
 
         return view;
     }
 
-    private void getSportsListData() {
-        String url = Constants.BASE_URL + "all_sports.php";
-        GsonRequest<Sports> sportsGsonRequest = new GsonRequest<>(url, Request.Method.GET, null, Sports.class, null,
-                response -> {
-                    Utility.log(TAG, response.getSports().get(0).getStrSportThumb());
-                    listAdapter = new RecyclerListAdapter(response.getSports(), this.getActivity());
-                    recyclerView.setAdapter(listAdapter);
-                    loadToast.success();
-                }, error -> {
-            loadToast.error();
-        });
-        QueueSingleton.getInstance(this.getActivity()).addToRequestQueue(sportsGsonRequest);
-    }
 
-    private void initToast() {
-        loadToast = new LoadToast(this.getActivity());
-        loadToast.setProgressColor(Color.BLUE);
-        loadToast.setTranslationY(200);
-        loadToast.show();
-    }
     private void initViewPager() {
         pagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         pagerAdapter.addFragment(new AllSportsFragment(), "All Sports");

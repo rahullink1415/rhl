@@ -9,57 +9,54 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.android.volley.Request;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.RecyclerListAdapter;
+import com.rahulkumar.soccerinfo.adapter.RecyclerNewsAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
 import com.rahulkumar.soccerinfo.model.Sports;
+import com.rahulkumar.soccerinfo.model.newsModel.Article;
+import com.rahulkumar.soccerinfo.model.newsModel.SportsNews;
 import com.rahulkumar.soccerinfo.singleton.QueueSingleton;
 import com.rahulkumar.soccerinfo.utilty.GsonRequest;
 import com.rahulkumar.soccerinfo.utilty.Utility;
 
 import net.steamcrafted.loadtoast.LoadToast;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AllSportsFragment extends Fragment {
-    private static final String TAG = "AllSportsFragment";
-
+public class NewsFragment extends Fragment {
+    private static final String TAG = "NewsFragment";
     private RecyclerView recyclerView;
-    private RecyclerListAdapter listAdapter;
+    private RecyclerNewsAdapter newsAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private LoadToast loadToast;
+    private ArrayList<Article> sportsNewsList = new ArrayList<>();
 
-    public AllSportsFragment() {
+
+    public NewsFragment() {
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_all_sports, container, false);
-        recyclerView = view.findViewById(R.id.listRecyclerId);
-
-        initToast();
+        View view = inflater.inflate(R.layout.fragment_news, container, false);
+        recyclerView = view.findViewById(R.id.newsRecyclerId);
         layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        getSportsListData();
+        newsAdapter = new RecyclerNewsAdapter(sportsNewsList, this.getActivity());
+        recyclerView.setAdapter(newsAdapter);
+        initToast();
+        getNewsData();
 
         return view;
-    }
-
-    private void getSportsListData() {
-        String url = Constants.BASE_URL + "all_sports.php";
-        GsonRequest<Sports> sportsGsonRequest = new GsonRequest<>(url, Request.Method.GET, null, Sports.class, null,
-                response -> {
-                    listAdapter = new RecyclerListAdapter(response.getSports(), this.getActivity());
-                    recyclerView.setAdapter(listAdapter);
-                    loadToast.success();
-                }, error -> {
-            loadToast.error();
-        });
-        QueueSingleton.getInstance(this.getActivity()).addToRequestQueue(sportsGsonRequest);
     }
 
     private void initToast() {
@@ -68,4 +65,22 @@ public class AllSportsFragment extends Fragment {
         loadToast.setTranslationY(200);
         loadToast.show();
     }
+
+    private void getNewsData() {
+
+        Utility.log(TAG,Constants.NEWS_URL);
+        GsonRequest<SportsNews> sportsGsonRequest = new GsonRequest<>(Constants.NEWS_URL, Request.Method.GET, null, SportsNews.class, null,
+                response -> {
+                    Utility.log(TAG, response.getTotalResults().toString());
+                    newsAdapter = new RecyclerNewsAdapter(response.getArticles(), this.getActivity());
+                    recyclerView.setAdapter(newsAdapter);
+                    newsAdapter.notifyDataSetChanged();
+                    loadToast.success();
+                }, error -> {
+            loadToast.error();
+        });
+        QueueSingleton.getInstance(this.getActivity()).addToRequestQueue(sportsGsonRequest);
+    }
+
+
 }

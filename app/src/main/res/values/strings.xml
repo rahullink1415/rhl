@@ -116,4 +116,6 @@
     <string name="description">Description</string>
     <string name="no_description_found">No description found</string>
     <string name="no_name_found">No Name Found</string>
+    <string name="news_heading">News Heading</string>
+    <string name="news_time">News Time</string>
 </resources>
