@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.android.volley.Request;
+import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.RecyclerListAdapter;
 import com.rahulkumar.soccerinfo.adapter.RecyclerNewsAdapter;
@@ -54,7 +55,13 @@ public class NewsFragment extends Fragment {
         newsAdapter = new RecyclerNewsAdapter(sportsNewsList, this.getActivity());
         recyclerView.setAdapter(newsAdapter);
         initToast();
-        getNewsData();
+        if (AppClass.isNetworkAvailable(this.getActivity())) {
+            getNewsData();
+        } else {
+            Utility.toast(this.getActivity(), "Network UnAvailable please try again !");
+            loadToast.error();
+        }
+
 
         return view;
     }
@@ -68,7 +75,7 @@ public class NewsFragment extends Fragment {
 
     private void getNewsData() {
 
-        Utility.log(TAG,Constants.NEWS_URL);
+        Utility.log(TAG, Constants.NEWS_URL);
         GsonRequest<SportsNews> sportsGsonRequest = new GsonRequest<>(Constants.NEWS_URL, Request.Method.GET, null, SportsNews.class, null,
                 response -> {
                     Utility.log(TAG, response.getTotalResults().toString());

@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.ImagesAdapter;
 import com.rahulkumar.soccerinfo.adapter.SearchAdapter;
@@ -64,9 +65,15 @@ public class ImagesFragment extends Fragment {
         imagesAdapter = new ImagesAdapter(sportImages, this.getActivity());
         recyclerView.setAdapter(imagesAdapter);
         initToast();
-        getImagesData(url);
-        getSportsImages(Constants.BASE_URL + "all_sports.php");
-        getLookUpImages(Constants.BASE_URL + "lookup_all_players.php?id=133604");
+        if (AppClass.isNetworkAvailable(this.getActivity())) {
+            getImagesData(url);
+            getSportsImages(Constants.BASE_URL + "all_sports.php");
+            getLookUpImages(Constants.BASE_URL + "lookup_all_players.php?id=133604");
+        } else {
+            Utility.toast(this.getActivity(), "Network UnAvailable please try again !");
+            loadToast.error();
+        }
+
         return view;
     }
 

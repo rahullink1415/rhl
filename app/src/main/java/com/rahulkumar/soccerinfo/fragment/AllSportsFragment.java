@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.volley.Request;
+import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.RecyclerListAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
@@ -44,7 +45,14 @@ public class AllSportsFragment extends Fragment {
         initToast();
         layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        getSportsListData();
+        if (AppClass.isNetworkAvailable(this.getContext())){
+            getSportsListData();
+            loadToast.error();
+
+        }else {
+            Utility.toast(this.getContext(),"network is unavailable,retry ");
+        }
+
 
         return view;
     }
@@ -65,7 +73,7 @@ public class AllSportsFragment extends Fragment {
     private void initToast() {
         loadToast = new LoadToast(this.getActivity());
         loadToast.setProgressColor(Color.BLUE);
-        loadToast.setTranslationY(200);
+        loadToast.setTranslationY(150);
         loadToast.show();
     }
 }

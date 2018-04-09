@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.SearchAdapter;
 import com.rahulkumar.soccerinfo.adapter.SearchTeamAdapter;
@@ -64,17 +65,29 @@ public class SearchFragment extends Fragment {
         final String[] url = new String[2];
         initRadioGroup(view, url);
         searchButton.setOnClickListener(v -> {
-            if (url[0]!=null) {
+            if (url[0] != null) {
 
                 if (!Objects.equals(url[0], "")) {
                     initToast();
-                    getTeamSearchData(url[0]);
+                    if (AppClass.isNetworkAvailable(this.getActivity())) {
+                        getTeamSearchData(url[0]);
+                    } else {
+                        Utility.toast(this.getActivity(), "Network UnAvailable please try again !");
+                        loadToast.error();
+                    }
+
                 } else if (Objects.equals(url[0], "")) {
                     initToast();
-                    getPlayerSearchData(url[1]);
+                    if (AppClass.isNetworkAvailable(this.getActivity())) {
+                        getPlayerSearchData(url[1]);
+                    } else {
+                        Utility.toast(this.getActivity(), "Network UnAvailable please try again !");
+                        loadToast.error();
+                    }
+
 
                 }
-            }else {
+            } else {
                 Utility.toast(this.getActivity(), "select one option below");
             }
 

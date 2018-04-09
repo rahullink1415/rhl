@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.utilty.Utility;
 
@@ -26,6 +25,7 @@ public class DetailNewsActivity extends BaseActivity {
         setContentView(R.layout.activity_detail_news);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        assert getSupportActionBar() !=null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         myWebView = findViewById(R.id.webview);

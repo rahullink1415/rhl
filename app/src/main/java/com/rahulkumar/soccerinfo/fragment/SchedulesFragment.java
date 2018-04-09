@@ -15,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.EventsAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
@@ -58,7 +59,15 @@ public class SchedulesFragment extends Fragment {
         eventsAdapter = new EventsAdapter(eventsArrayList, this.getActivity());
         recyclerView.setAdapter(eventsAdapter);
         initToast();
-        getSchdeuleData(url);
+        if (AppClass.isNetworkAvailable(this.getContext())){
+            getSchdeuleData(url);
+
+
+        }else {
+            Utility.toast(this.getContext(),"network is unavailable,retry ");
+            loadToast.error();
+        }
+
         return view;
     }
 
