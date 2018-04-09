@@ -118,4 +118,6 @@
     <string name="no_name_found">No Name Found</string>
     <string name="news_heading">News Heading</string>
     <string name="news_time">News Time</string>
+    <string name="app_logo">app logo</string>
+    <string name="sports_info">Sports Info</string>
 </resources>
