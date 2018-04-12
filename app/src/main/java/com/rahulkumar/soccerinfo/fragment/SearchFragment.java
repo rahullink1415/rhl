@@ -61,6 +61,7 @@ public class SearchFragment extends Fragment {
         layoutManager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         searchTxt = view.findViewById(R.id.searchTxt);
+        getPlayerSearchData("https://www.thesportsdb.com/api/v1/json/1/lookup_all_players.php?id=133604");
         ImageButton searchButton = view.findViewById(R.id.searchButtonImg);
         final String[] url = new String[2];
         initRadioGroup(view, url);
@@ -68,24 +69,21 @@ public class SearchFragment extends Fragment {
             if (url[0] != null) {
 
                 if (!Objects.equals(url[0], "")) {
-                    initToast();
                     if (AppClass.isNetworkAvailable(this.getActivity())) {
-                        getTeamSearchData(url[0]);
+                        getTeamSearchData(url[0] + searchTxt.getText());
                     } else {
                         Utility.toast(this.getActivity(), "Network UnAvailable please try again !");
-                        loadToast.error();
+                       // loadToast.error();
                     }
 
                 } else if (Objects.equals(url[0], "")) {
-                    initToast();
+
                     if (AppClass.isNetworkAvailable(this.getActivity())) {
-                        getPlayerSearchData(url[1]);
+                        getPlayerSearchData(url[1] + searchTxt.getText());
                     } else {
                         Utility.toast(this.getActivity(), "Network UnAvailable please try again !");
-                        loadToast.error();
+                        //loadToast.error();
                     }
-
-
                 }
             } else {
                 Utility.toast(this.getActivity(), "select one option below");
@@ -98,7 +96,8 @@ public class SearchFragment extends Fragment {
 
     private void getTeamSearchData(String url) {
         Utility.log(TAG, "teamSearch " + url + searchTxt.getText());
-        JsonObjectRequest searchReaquest = new JsonObjectRequest(Request.Method.GET, url + searchTxt.getText(), null,
+        initToast();
+        JsonObjectRequest searchRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 (response) -> {
                     Utility.log(TAG, response.toString());
                     onTeamSearch(response);
@@ -108,13 +107,15 @@ public class SearchFragment extends Fragment {
             Utility.toast(getContext(), "error " + error.getLocalizedMessage());
         });
 
-        QueueSingleton.getInstance(this.getActivity()).addToRequestQueue(searchReaquest);
+        QueueSingleton.getInstance(this.getActivity()).addToRequestQueue(searchRequest);
 
     }
 
     private void getPlayerSearchData(String url) {
         Utility.log(TAG, "playerSearch " + url + searchTxt.getText());
-        JsonObjectRequest searchRequest = new JsonObjectRequest(Request.Method.GET, url + searchTxt.getText(), null,
+        //String finalUrl =url+searchTxt.getText();
+        initToast();
+        JsonObjectRequest searchRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 (response) -> {
                     Utility.log(TAG, response.toString());
                     onPlayerSearch(response);
