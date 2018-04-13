@@ -1,4 +1,4 @@
-package com.rahulkumar.soccerinfo.model;
+package com.rahulkumar.soccerinfo.model.sportsModel;
 
 import android.os.Parcel;
 import android.os.Parcelable;

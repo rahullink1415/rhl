@@ -12,19 +12,16 @@ import android.view.ViewGroup;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.ImagesAdapter;
-import com.rahulkumar.soccerinfo.adapter.SearchAdapter;
-import com.rahulkumar.soccerinfo.adapter.SearchTeamAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
-import com.rahulkumar.soccerinfo.model.League;
-import com.rahulkumar.soccerinfo.model.Player;
-import com.rahulkumar.soccerinfo.model.Sport;
-import com.rahulkumar.soccerinfo.model.SportImage;
+import com.rahulkumar.soccerinfo.model.sportsModel.League;
+import com.rahulkumar.soccerinfo.model.sportsModel.Player;
+import com.rahulkumar.soccerinfo.model.sportsModel.Sport;
+import com.rahulkumar.soccerinfo.model.sportsModel.SportImage;
 import com.rahulkumar.soccerinfo.singleton.QueueSingleton;
 import com.rahulkumar.soccerinfo.utilty.Utility;
 

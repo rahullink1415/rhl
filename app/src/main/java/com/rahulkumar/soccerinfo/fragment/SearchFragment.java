@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,9 @@ import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.SearchAdapter;
 import com.rahulkumar.soccerinfo.adapter.SearchTeamAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
-import com.rahulkumar.soccerinfo.model.Player;
-import com.rahulkumar.soccerinfo.model.Teams;
+import com.rahulkumar.soccerinfo.model.CommanModel;
+import com.rahulkumar.soccerinfo.model.sportsModel.Player;
+import com.rahulkumar.soccerinfo.model.sportsModel.Teams;
 import com.rahulkumar.soccerinfo.singleton.QueueSingleton;
 import com.rahulkumar.soccerinfo.utilty.Utility;
 
@@ -36,6 +36,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class SearchFragment extends Fragment {

@@ -9,15 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.android.volley.Request;
 import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
-import com.rahulkumar.soccerinfo.adapter.RecyclerListAdapter;
 import com.rahulkumar.soccerinfo.adapter.RecyclerNewsAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
-import com.rahulkumar.soccerinfo.model.Sports;
 import com.rahulkumar.soccerinfo.model.newsModel.Article;
 import com.rahulkumar.soccerinfo.model.newsModel.SportsNews;
 import com.rahulkumar.soccerinfo.singleton.QueueSingleton;

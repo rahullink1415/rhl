@@ -12,12 +12,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.rahulkumar.soccerinfo.R;
-import com.rahulkumar.soccerinfo.model.SportImage;
+import com.rahulkumar.soccerinfo.model.sportsModel.SportImage;
 import com.rahulkumar.soccerinfo.utilty.DynamicImage;
 
 import java.util.List;

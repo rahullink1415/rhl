@@ -1,4 +1,4 @@
-package com.rahulkumar.soccerinfo.model;
+package com.rahulkumar.soccerinfo.model.sportsModel;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -83,8 +83,9 @@ public class Player extends Sports implements Parcelable {
     private String strFanart1;
 
     private String strPosition;
+    public Player(){}
 
-    protected Player(Parcel in) {
+    private Player(Parcel in) {
         strLocked = in.readString();
         strDescriptionEN = in.readString();
         strTwitter = in.readString();

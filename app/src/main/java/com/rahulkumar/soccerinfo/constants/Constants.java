@@ -13,4 +13,7 @@ public class Constants {
 
     public static final String BASE_URL = "https://www.thesportsdb.com/api/v1/json/1/";
     public static final String NEWS_URL = "https://newsapi.org/v2/top-headlines?sources=talksport&apiKey=bfaba6fcaec8445482d3c3f5961236c6";
+    public static final String SPORT_URL = "https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=";
+
+    /*https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=Motorsport*/
 }

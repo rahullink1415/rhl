@@ -5,8 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.google.gson.Gson;
-import com.rahulkumar.soccerinfo.model.Search;
-import com.rahulkumar.soccerinfo.model.Sports;
+import com.rahulkumar.soccerinfo.model.sportsModel.Search;
 
 /**
  * The class PreferenceConnector is a class useful to

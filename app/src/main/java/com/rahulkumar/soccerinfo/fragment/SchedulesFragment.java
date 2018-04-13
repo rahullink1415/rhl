@@ -19,7 +19,7 @@ import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.EventsAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
-import com.rahulkumar.soccerinfo.model.Events;
+import com.rahulkumar.soccerinfo.model.sportsModel.Events;
 import com.rahulkumar.soccerinfo.singleton.QueueSingleton;
 import com.rahulkumar.soccerinfo.utilty.Utility;
 

@@ -9,14 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.rahulkumar.soccerinfo.R;
-import com.rahulkumar.soccerinfo.model.Events;
+import com.rahulkumar.soccerinfo.model.sportsModel.Events;
 
 import java.util.List;
 

@@ -15,7 +15,7 @@ import com.rahulkumar.soccerinfo.AppClass;
 import com.rahulkumar.soccerinfo.R;
 import com.rahulkumar.soccerinfo.adapter.RecyclerListAdapter;
 import com.rahulkumar.soccerinfo.constants.Constants;
-import com.rahulkumar.soccerinfo.model.Sports;
+import com.rahulkumar.soccerinfo.model.sportsModel.Sports;
 import com.rahulkumar.soccerinfo.singleton.QueueSingleton;
 import com.rahulkumar.soccerinfo.utilty.GsonRequest;
 import com.rahulkumar.soccerinfo.utilty.Utility;

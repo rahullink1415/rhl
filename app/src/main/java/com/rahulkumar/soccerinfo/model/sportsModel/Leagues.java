@@ -1,5 +1,5 @@
 
-package com.rahulkumar.soccerinfo.model;
+package com.rahulkumar.soccerinfo.model.sportsModel;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

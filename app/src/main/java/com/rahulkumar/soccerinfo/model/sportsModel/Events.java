@@ -1,4 +1,4 @@
-package com.rahulkumar.soccerinfo.model;
+package com.rahulkumar.soccerinfo.model.sportsModel;
 
 /**
  * Created by rahulkumar on 4/4/18.
