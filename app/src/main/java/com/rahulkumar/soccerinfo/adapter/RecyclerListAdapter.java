@@ -66,18 +66,14 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Sport data = sportList.get(position);
-        ImagePopup imagePopup =new ImagePopup(context);
-        imagePopup.setBackgroundColor(Color.BLACK);
         holder.summaryTxt.setText(data.getStrSportDescription());
         holder.sportTxt.setText(data.getStrSport());
         Glide.with(context).load(data.getStrSportThumb()).into(holder.imageView);
-        imagePopup.initiatePopupWithGlide(data.getStrSportThumb());
         holder.itemView.setOnClickListener(v -> {
-            Intent intent=new Intent(context, SportsDetailActivity.class);
-            intent.putExtra("sport",data.getStrSport());
+            Intent intent = new Intent(context, SportsDetailActivity.class);
+            intent.putExtra("sport", data.getStrSport());
             context.startActivity(intent);
         });
-        holder.imageView.setOnClickListener((v)->imagePopup.viewPopup());
         holder.moreButton.setOnClickListener(v -> alertView(data.getStrSportThumb(), data.getStrSport(), data.getStrSportDescription()));
     }
 

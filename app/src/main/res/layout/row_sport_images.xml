@@ -8,7 +8,7 @@
     android:layout_margin="@dimen/dimen8dp"
     android:background="@color/white">
 
-    <com.rahulkumar.soccerinfo.utilty.DynamicImage
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -48,7 +49,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.MyViewHold
 
         Glide.with(context)
                 .load(imageUrl.getUrl())
-                .into(new ViewTarget<AppCompatImageView, Drawable>(holder.imageView) {
+                .into(new ViewTarget<ImageView, Drawable>(holder.imageView) {
                     @Override
                     public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
                         holder.imageView.setImageDrawable(resource);
@@ -73,7 +74,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        DynamicImage imageView;
+        ImageView imageView;
         RelativeLayout imageCard;
 
         public MyViewHolder(View itemView) {
