@@ -58,8 +58,8 @@ public class Splash extends BaseActivity {
     }
 
     private void startSpringAnimation(View view){
-        // create an animation for your view and set the property you want to animate
         SpringAnimation animation = new SpringAnimation(view, SpringAnimation.Y,700);
+        SpringAnimation animationR = new SpringAnimation(view, SpringAnimation.ROTATION,700);
         // create a spring with desired parameters
         SpringForce spring = new SpringForce();
         // can also be passed directly in the constructor
@@ -71,6 +71,8 @@ public class Splash extends BaseActivity {
         // set your animation's spring
         animation.setSpring(spring);
         // animate!
+        animationR.setSpring(spring);
         animation.start();
+        animationR.start();
     }
 }
